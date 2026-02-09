@@ -41,7 +41,18 @@ Open https://github.com/beejak/agent-skills-curated — your files should be the
 ## If push fails
 
 - **"Authentication failed"** → Use a Personal Access Token as the password, not your GitHub password.
-- **"src refspec main does not match any"** → Run `git add .` then `git commit -m "Initial commit"` then `git branch -M main` then push again.
+- **"src refspec main does not match any"** → Your local branch is probably named `master`, not `main`. Fix:
+  ```bat
+  git branch -M main
+  git push -u origin main
+  ```
+  If you have no commits yet, create one first:
+  ```bat
+  git add .
+  git commit -m "Initial commit"
+  git branch -M main
+  git push -u origin main
+  ```
 - **"remote: Repository not found"** → Create the repo on GitHub first (step 1) and use the correct username in the remote URL.
 - **"failed to push some refs"** or **"Updates were rejected"** → The remote has commits you don’t have (e.g. you created the repo with a README on GitHub). Run:
 
